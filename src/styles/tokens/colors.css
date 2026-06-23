@@ -1,0 +1,95 @@
+/* Deroua Design System — Colors */
+:root {
+  --color-teal-900: #061A22;
+  --color-teal-800: #0A2D38;
+  --color-teal-700: #124455;
+  --color-teal-600: #1A5E78;
+  --color-teal-500: #267A98;
+  --color-teal-400: #4A9AB5;
+  --color-teal-300: #83BDD0;
+  --color-teal-200: #C0DCE5;
+  --color-teal-100: #E5F2F6;
+
+  --color-teal-dark:    var(--color-teal-800);
+  --color-teal:         var(--color-teal-700);
+  --color-teal-light:   var(--color-teal-500);
+  --color-teal-lighter: var(--color-teal-400);
+  --color-teal-pale:    var(--color-teal-100);
+
+  --color-gold-900: #3A1E00;
+  --color-gold-800: #6B3C05;
+  --color-gold-700: #925414;
+  --color-gold-600: #B87F1E;
+  --color-gold-500: #CE9A40;
+  --color-gold-400: #DDB86A;
+  --color-gold-300: #EDD098;
+  --color-gold-200: #F5E5C0;
+  --color-gold-100: #FBF4E4;
+
+  --color-gold:       var(--color-gold-600);
+  --color-gold-warm:  var(--color-gold-500);
+  --color-gold-light: var(--color-gold-300);
+  --color-gold-pale:  var(--color-gold-200);
+  --color-gold-dark:  var(--color-gold-700);
+
+  --color-parchment:       #F8F5F0;
+  --color-parchment-light: #FFFDF9;
+  --color-parchment-deep:  #EDE8DF;
+
+  --color-charcoal:       #1A1A1A;
+  --color-charcoal-light: #3D3530;
+  --color-charcoal-soft:  #6B6058;
+  --color-charcoal-muted: #A89F96;
+
+  --color-white: #FFFFFF;
+
+  --color-surface-page:    #F8F5F0;
+  --color-surface-card:    #FFFFFF;
+  --color-surface-raised:  #FFFDF9;
+  --color-surface-dark:    #0A2D38;
+  --color-surface-darker:  #061A22;
+  --color-surface-overlay: rgba(6, 22, 34, 0.80);
+
+  --color-text-primary:   #1A1A1A;
+  --color-text-secondary: #3D3530;
+  --color-text-tertiary:  #6B6058;
+  --color-text-disabled:  #A89F96;
+  --color-text-inverse:   #F8F5F0;
+  --color-text-gold:      #B87F1E;
+
+  --color-border-feather: #EDD098;
+  --color-border-subtle:  #DDB86A;
+  --color-border-default: #B87F1E;
+  --color-border-strong:  #925414;
+  --color-border-muted:   #D4CCBF;
+  --color-border-dark:    rgba(255,255,255,0.12);
+
+  --color-btn-primary-bg:     #0A2D38;
+  --color-btn-primary-text:   #F8F5F0;
+  --color-btn-primary-hover:  #124455;
+  --color-btn-primary-active: #061A22;
+
+  --color-btn-gold-bg:     #B87F1E;
+  --color-btn-gold-text:   #1A1A1A;
+  --color-btn-gold-hover:  #CE9A40;
+  --color-btn-gold-active: #925414;
+
+  --color-btn-ghost-text:   #0A2D38;
+  --color-btn-ghost-border: #B87F1E;
+  --color-btn-ghost-hover:  #FBF4E4;
+
+  --color-focus-ring: #B87F1E;
+
+  --color-success:    #235C3A;
+  --color-success-bg: #E8F4EE;
+  --color-warning:    #8C5C00;
+  --color-warning-bg: #FBF0DA;
+  --color-error:      #7A2828;
+  --color-error-bg:   #F8EAEA;
+  --color-info:       #124455;
+  --color-info-bg:    #E5F2F6;
+
+  /* Legacy aliases */
+  --color-cream: var(--color-parchment);
+  --color-navy:  var(--color-teal-900);
+}

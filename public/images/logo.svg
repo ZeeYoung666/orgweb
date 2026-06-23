@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Deep teal circle background -->
+  <circle cx="40" cy="40" r="38" fill="#0A2D38" stroke="#B87F1E" stroke-width="1.5"/>
+  <!-- Gold ornamental ring -->
+  <circle cx="40" cy="40" r="30" stroke="#B87F1E" stroke-width="0.75" stroke-dasharray="4 3" opacity="0.5"/>
+  <!-- Theater masks / artistic symbol -->
+  <text x="40" y="48" text-anchor="middle" font-family="serif" font-size="28" fill="#B87F1E">🎭</text>
+  <!-- Arabic letter ف (for فن - art) as subtle watermark -->
+  <!-- Outer gold star ornament -->
+  <text x="40" y="74" text-anchor="middle" font-family="serif" font-size="8" fill="#B87F1E" opacity="0.6">✦</text>
+</svg>

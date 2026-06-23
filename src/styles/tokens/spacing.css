@@ -1,0 +1,21 @@
+/* Deroua Design System — Spacing */
+:root {
+  --spacing-xs:  4px;
+  --spacing-s:   8px;
+  --spacing-m:   16px;
+  --spacing-l:   24px;
+  --spacing-xl:  32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  --padding-card:    var(--spacing-l);
+  --padding-card-sm: var(--spacing-m);
+  --padding-section: var(--spacing-3xl);
+  --padding-inline:  var(--spacing-l);
+
+  --gap-tight:    var(--spacing-s);
+  --gap-standard: var(--spacing-m);
+  --gap-loose:    var(--spacing-l);
+  --gap-section:  var(--spacing-xl);
+}

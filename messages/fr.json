@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "events": "Événements",
+    "gallery": "Galerie",
+    "contact": "Contact"
+  },
+  "hero": {
+    "slogan": "Pour l'Art",
+    "tagline": "Association Deroua pour la Culture et les Arts",
+    "subtitle": "Célébrer la créativité et valoriser la culture sous toutes ses formes — théâtre, musique, arts visuels et littérature.",
+    "cta_primary": "Découvrir nos événements",
+    "cta_secondary": "En savoir plus"
+  },
+  "about": {
+    "badge": "À propos",
+    "title": "Une association culturelle au cœur d'artiste",
+    "body": "Fondée avec une passion authentique pour la revitalisation du patrimoine culturel et le soutien à la créativité locale, l'Association Deroua croit que l'art n'est pas un luxe mais une nécessité humaine. Nous créons un espace ouvert réunissant artistes, intellectuels et public.",
+    "cta": "En savoir plus sur nous",
+    "stat_events": "Événements organisés",
+    "stat_years": "Années de créativité",
+    "stat_artists": "Artistes engagés"
+  },
+  "events": {
+    "badge": "Événements à venir",
+    "title": "Des rendez-vous à ne pas manquer",
+    "subtitle": "Rejoignez-nous pour une riche série d'événements culturels et artistiques",
+    "cta": "Voir tous les événements",
+    "register": "S'inscrire",
+    "location_label": "Lieu",
+    "event1": {
+      "category": "Théâtre",
+      "title": "Spectacle : Voix d'un autre temps",
+      "description": "Un spectacle théâtral extraordinaire réinterprétant les contes du patrimoine dans un style contemporain.",
+      "date": "15 juillet 2026",
+      "time": "20h00",
+      "location": "Maison de la Culture — Deroua"
+    },
+    "event2": {
+      "category": "Musique",
+      "title": "Une soirée musicale andalouse",
+      "description": "Une soirée musicale raffinée célébrant l'ancien patrimoine andalou à travers des voix locales distinctives.",
+      "date": "22 juillet 2026",
+      "time": "19h30",
+      "location": "Grand Théâtre — Deroua"
+    },
+    "event3": {
+      "category": "Arts visuels",
+      "title": "Exposition : Couleurs de la ville",
+      "description": "Une exposition collective explorant la relation de l'artiste avec sa ville à travers la couleur et la forme.",
+      "date": "1er août 2026",
+      "time": "10h00 — 18h00",
+      "location": "Salle d'Exposition — Deroua"
+    }
+  },
+  "gallery": {
+    "badge": "Galerie",
+    "title": "Moments de nos événements",
+    "subtitle": "Des souvenirs qui nous unissent, des images qui racontent des histoires inoubliables",
+    "cta": "Explorer la galerie complète"
+  },
+  "about_page": {
+    "hero_title": "À propos",
+    "hero_subtitle": "L'histoire d'une passion pour l'art et la culture au cœur de Deroua",
+    "mission_badge": "Notre Mission",
+    "mission_title": "L'art comme message, la culture comme patrie",
+    "mission_body": "L'Association Deroua pour la Culture et les Arts a été fondée en 2013 par un groupe d'intellectuels et d'artistes convaincus que l'art n'est pas un luxe mais une nécessité humaine. Depuis sa fondation, l'association est devenue un espace vibrant réunissant créateurs et public dans une célébration continue du patrimoine culturel et de la créativité contemporaine.",
+    "values_badge": "Nos Valeurs",
+    "values_title": "Ce en quoi nous croyons",
+    "value1_title": "L'art pour tous",
+    "value1_body": "Nous croyons que la culture et l'art sont des droits pour tous, et nous efforçons de supprimer les barrières entre créateur et public.",
+    "value2_title": "Créativité locale",
+    "value2_body": "Nous célébrons les talents locaux et leur offrons les plateformes qu'ils méritent pour briller et toucher un public plus large.",
+    "value3_title": "Patrimoine vivant",
+    "value3_body": "Nous faisons le pont entre authenticité et modernité, préservant le patrimoine tout en innovant dans les formes d'expression.",
+    "value4_title": "Communauté créative",
+    "value4_body": "Nous construisons une communauté cultivée, capable de création, de critique et d'engagement culturel positif.",
+    "history_badge": "Notre Parcours",
+    "history_title": "Des débuts à aujourd'hui",
+    "milestone1_year": "2013",
+    "milestone1_title": "Fondation",
+    "milestone1_body": "L'association a été lancée par un groupe de fondateurs passionnés dédiés à l'art et à la culture à Deroua.",
+    "milestone2_year": "2015",
+    "milestone2_title": "Premier Festival",
+    "milestone2_body": "Organisation du premier festival culturel qui a réuni plus de 500 spectateurs sur trois jours.",
+    "milestone3_year": "2018",
+    "milestone3_title": "Expansion Régionale",
+    "milestone3_body": "Partenariats avec des associations culturelles des villes voisines et lancement d'un programme d'arts mobiles.",
+    "milestone4_year": "2024",
+    "milestone4_title": "Aujourd'hui",
+    "milestone4_body": "Plus de 60 événements annuels et un réseau de plus de 200 artistes et partenaires culturels."
+  },
+  "events_page": {
+    "hero_title": "Événements",
+    "hero_subtitle": "Découvrez notre programme culturel constamment renouvelé tout au long de l'année",
+    "filter_all": "Tout",
+    "filter_theater": "Théâtre",
+    "filter_music": "Musique",
+    "filter_visual": "Arts visuels",
+    "filter_literature": "Littérature",
+    "upcoming_title": "Événements à venir",
+    "past_title": "Événements passés",
+    "no_events": "Aucun événement à venir pour le moment",
+    "time_label": "Heure",
+    "free_entry": "Entrée libre",
+    "tickets": "Avec billets"
+  },
+  "gallery_page": {
+    "hero_title": "Galerie",
+    "hero_subtitle": "Des moments qui nous rassemblent, des images qui racontent des histoires de créativité et de joie",
+    "filter_all": "Toutes les photos",
+    "photo_count": "photos de nos événements"
+  },
+  "contact_page": {
+    "hero_title": "Contactez-nous",
+    "hero_subtitle": "Nous sommes ravis de vous entendre et de répondre à toutes vos questions",
+    "form_title": "Envoyer un message",
+    "name_label": "Nom complet",
+    "name_placeholder": "Votre nom",
+    "email_label": "Adresse e-mail",
+    "email_placeholder": "Votre adresse e-mail",
+    "subject_label": "Sujet",
+    "subject_placeholder": "Sujet du message",
+    "message_label": "Message",
+    "message_placeholder": "Écrivez votre message ici...",
+    "submit": "Envoyer le message",
+    "success_title": "Message envoyé !",
+    "success_body": "Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.",
+    "info_title": "Informations de contact",
+    "address_label": "Adresse",
+    "address_value": "Deroua, Province de Benslimane, Maroc",
+    "email_info": "association.deroua@gmail.com",
+    "phone_label": "Téléphone",
+    "phone_value": "+212 6XX-XXXXXX",
+    "hours_label": "Heures d'ouverture",
+    "hours_value": "Lundi — Samedi : 9h00 — 18h00",
+    "social_title": "Suivez-nous"
+  },
+  "footer": {
+    "tagline": "Pour l'Art — Association Deroua pour la Culture et les Arts",
+    "nav_title": "Liens rapides",
+    "contact_title": "Contactez-nous",
+    "rights": "Tous droits réservés",
+    "address": "Deroua, Maroc"
+  }
+}
