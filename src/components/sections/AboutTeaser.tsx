@@ -5,290 +5,246 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const STATS = [
-  { key: 'stat_events', value: '+60' },
-  { key: 'stat_years', value: '12' },
-  { key: 'stat_artists', value: '+200' },
-]
+  { value: '15+', key: 'stat_years' },
+  { value: '200+', key: 'stat_artists' },
+  { value: '50+', key: 'stat_events' },
+  { value: '5', key: 'stat_disciplines' },
+] as const
+
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } }
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] } },
+}
 
 export default function AboutTeaser() {
   const t = useTranslations('about')
   const locale = useLocale()
   const isRTL = locale === 'ar'
-  const dir = isRTL ? 'rtl' : 'ltr'
 
   return (
     <section
-      dir={dir}
+      dir={isRTL ? 'rtl' : 'ltr'}
       style={{
-        paddingBlock: 'var(--spacing-4xl)',
-        backgroundColor: 'var(--color-surface-page)',
         position: 'relative',
-        overflow: 'hidden',
+        paddingBlock: 'clamp(72px, 9vw, 124px)',
+        background: 'var(--color-parchment)',
       }}
     >
-      {/* Background paper texture */}
+      {/* Subtle diagonal texture */}
       <div
         aria-hidden
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `repeating-linear-gradient(
-            -45deg, transparent, transparent 20px,
-            rgba(184,127,30,0.018) 20px, rgba(184,127,30,0.018) 21px
-          )`,
-          pointerEvents: 'none',
-        }}
+        className="bg-pattern-lines"
+        style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
       />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ position: 'relative' }}>
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 'var(--spacing-4xl)',
+            gap: 'clamp(40px, 5vw, 80px)',
             alignItems: 'center',
           }}
         >
-          {/* Left: decorative panel */}
+          {/* Text column */}
           <motion.div
-            initial={{ opacity: 0, x: isRTL ? 40 : -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-l)' }}
+            variants={stagger}
+            style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
           >
-            {/* Ornate decorative frame */}
-            <div
+            {/* Badge with leading line */}
+            <motion.span
+              variants={fadeUp}
               style={{
-                position: 'relative',
-                padding: 'var(--spacing-2xl)',
-                backgroundColor: 'var(--color-teal-dark)',
-                borderRadius: '3px',
-                border: '1px solid var(--color-gold)',
-                overflow: 'hidden',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+                color: 'var(--color-text-gold)',
+                fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
+                fontSize: 15,
+                fontWeight: 600,
               }}
             >
-              {/* Corner marks */}
-              {[
-                { top: 8, left: 8, borderTop: true, borderLeft: true },
-                { top: 8, right: 8, borderTop: true, borderRight: true },
-                { bottom: 8, left: 8, borderBottom: true, borderLeft: true },
-                { bottom: 8, right: 8, borderBottom: true, borderRight: true },
-              ].map((corner, i) => (
-                <div
-                  key={i}
-                  aria-hidden
-                  style={{
-                    position: 'absolute',
-                    width: 20,
-                    height: 20,
-                    ...(corner.top !== undefined ? { top: corner.top } : {}),
-                    ...(corner.bottom !== undefined ? { bottom: corner.bottom } : {}),
-                    ...(corner.left !== undefined ? { left: corner.left } : {}),
-                    ...(corner.right !== undefined ? { right: corner.right } : {}),
-                    borderTop: corner.borderTop ? '1.5px solid var(--color-gold)' : undefined,
-                    borderBottom: corner.borderBottom ? '1.5px solid var(--color-gold)' : undefined,
-                    borderLeft: corner.borderLeft ? '1.5px solid var(--color-gold)' : undefined,
-                    borderRight: corner.borderRight ? '1.5px solid var(--color-gold)' : undefined,
-                  }}
-                />
-              ))}
-
-              <p
-                dir="rtl"
-                style={{
-                  fontFamily: 'var(--font-arabic-display)',
-                  fontSize: 'clamp(28px, 4vw, 44px)',
-                  fontWeight: 700,
-                  color: 'var(--color-gold)',
-                  lineHeight: 1.6,
-                  textAlign: 'center',
-                  margin: 0,
-                  letterSpacing: 0,
-                }}
-              >
-                الفن رسالة<br />والثقافة وطن
-              </p>
-
-              {/* Gold divider */}
-              <div
-                style={{
-                  width: 64,
-                  height: 1.5,
-                  background: 'linear-gradient(to right, transparent, var(--color-gold), transparent)',
-                  margin: 'var(--spacing-l) auto 0',
-                }}
-              />
-              <p
-                style={{
-                  fontFamily: 'var(--font-latin-body)',
-                  fontStyle: 'italic',
-                  fontSize: 'var(--fs-sm)',
-                  color: 'rgba(248,245,240,0.5)',
-                  textAlign: 'center',
-                  marginTop: 'var(--spacing-m)',
-                  marginBottom: 0,
-                  letterSpacing: '0.03em',
-                }}
-              >
-                Art is a message, culture is a homeland
-              </p>
-            </div>
-
-            {/* Stats row */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1px',
-                backgroundColor: 'var(--color-border-feather)',
-                borderRadius: '3px',
-                overflow: 'hidden',
-                border: '1px solid var(--color-border-feather)',
-              }}
-            >
-              {STATS.map(({ key, value }) => (
-                <div
-                  key={key}
-                  style={{
-                    backgroundColor: 'var(--color-surface-card)',
-                    padding: 'var(--spacing-l) var(--spacing-m)',
-                    textAlign: 'center',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-latin-display)',
-                      fontSize: 'clamp(28px, 3vw, 40px)',
-                      fontWeight: 700,
-                      color: 'var(--color-teal-dark)',
-                      lineHeight: 1,
-                      marginBottom: 'var(--spacing-xs)',
-                    }}
-                  >
-                    {value}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
-                      fontSize: 'var(--fs-xs)',
-                      color: 'var(--color-text-tertiary)',
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {t(key as 'stat_events' | 'stat_years' | 'stat_artists')}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right: text content */}
-          <motion.div
-            initial={{ opacity: 0, x: isRTL ? -40 : 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-l)' }}
-          >
-            {/* Badge */}
-            <div>
               <span
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  fontSize: 'var(--fs-xs)',
-                  fontFamily: 'var(--font-mono)',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-gold)',
+                  width: 24,
+                  height: 1,
+                  background: 'var(--color-gold)',
+                  display: 'inline-block',
+                  flexShrink: 0,
                 }}
-              >
-                <span
-                  style={{
-                    display: 'inline-block',
-                    width: 32,
-                    height: 1.5,
-                    backgroundColor: 'var(--color-gold)',
-                  }}
-                />
-                {t('badge')}
-              </span>
-            </div>
+              />
+              {t('badge')}
+            </motion.span>
 
-            <h2
+            {/* Heading */}
+            <motion.h2
+              variants={fadeUp}
+              className="heading-accent"
               style={{
                 fontFamily: isRTL ? 'var(--font-arabic-display)' : 'var(--font-latin-display)',
                 fontSize: 'var(--fs-h2)',
                 fontWeight: 700,
                 color: 'var(--color-teal-dark)',
                 lineHeight: isRTL ? 1.5 : 'var(--lh-heading)',
-                letterSpacing: isRTL ? 0 : 'var(--ls-heading)',
+                maxWidth: '18ch',
                 margin: 0,
               }}
             >
               {t('title')}
-            </h2>
+            </motion.h2>
 
-            {/* Gold accent underline */}
-            <div
-              style={{
-                width: 64,
-                height: 2,
-                borderRadius: 1,
-                background: 'linear-gradient(to right, var(--color-gold), transparent)',
-                ...(isRTL ? {
-                  background: 'linear-gradient(to left, var(--color-gold), transparent)',
-                  marginInlineStart: 'auto',
-                  marginInlineEnd: 0,
-                } : {}),
-              }}
-            />
-
-            <p
+            <motion.p
+              variants={fadeUp}
               style={{
                 fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
                 fontSize: 'var(--fs-body-lg)',
                 color: 'var(--color-text-secondary)',
-                lineHeight: isRTL ? 'var(--lh-body-arabic)' : 'var(--lh-body)',
+                lineHeight: isRTL ? 'var(--lh-body-arabic)' : 1.85,
                 margin: 0,
               }}
             >
               {t('body')}
-            </p>
+            </motion.p>
 
-            <Link
-              href={`/${locale}/about`}
+            {/* 4-stat row */}
+            <motion.div
+              variants={fadeUp}
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px',
-                fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
-                fontSize: 'var(--fs-body)',
-                fontWeight: 700,
-                color: 'var(--color-teal-dark)',
-                textDecoration: 'none',
-                paddingBottom: '3px',
-                borderBottom: '2px solid var(--color-gold)',
-                width: 'fit-content',
-                transition: 'all 200ms ease-out',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.color = 'var(--color-gold)'
-                el.style.gap = '14px'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.color = 'var(--color-teal-dark)'
-                el.style.gap = '10px'
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+                gap: 22,
+                marginBlockStart: 14,
+                borderBlockStart: '1px solid var(--color-border-feather)',
+                paddingBlockStart: 28,
               }}
             >
-              {t('cta')}
-              <span style={{ fontSize: '18px' }}>{isRTL ? '←' : '→'}</span>
-            </Link>
+              {STATS.map(({ value, key }) => (
+                <div key={key} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-latin-display)',
+                      fontSize: 'clamp(26px, 2.5vw, 36px)',
+                      fontWeight: 700,
+                      color: 'var(--color-gold)',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {value}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
+                      fontSize: 13,
+                      color: 'var(--color-text-tertiary)',
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {t(key)}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div variants={fadeUp} style={{ marginBlockStart: 10 }}>
+              <Link
+                href={`/${locale}/about`}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'none',
+                  fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: 'var(--color-teal-dark)',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid var(--color-gold)',
+                  paddingBottom: 4,
+                  transition: 'color .2s, gap .25s',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.color = 'var(--color-gold)'
+                  el.style.gap = '14px'
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.color = 'var(--color-teal-dark)'
+                  el.style.gap = '8px'
+                }}
+              >
+                {t('cta')} {isRTL ? '←' : '→'}
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Image column with corner marks + EST badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            style={{ position: 'relative' }}
+          >
+            <div className="corner-marks" style={{ padding: 14 }}>
+              <div
+                style={{
+                  position: 'relative',
+                  aspectRatio: '4/5',
+                  border: '1px solid var(--color-border-subtle)',
+                  boxShadow: '0 16px 44px rgba(26,26,26,.18)',
+                  overflow: 'hidden',
+                  background: 'var(--color-teal-200)',
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/480341714_612132564901021_2736935456167332640_n.jpg"
+                  alt=""
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+            </div>
+
+            {/* EST. year badge */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: -16,
+                insetInlineStart: -14,
+                background: 'var(--color-teal-dark)',
+                color: 'var(--color-gold-warm)',
+                padding: '16px 22px',
+                border: '1px solid var(--color-gold)',
+                boxShadow: '0 12px 30px rgba(26,26,26,.24)',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'var(--font-latin-display)',
+                  fontSize: 32,
+                  fontWeight: 700,
+                  display: 'block',
+                  lineHeight: 1,
+                }}
+              >
+                2013
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 10,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                EST.
+              </span>
+            </div>
           </motion.div>
         </div>
       </div>

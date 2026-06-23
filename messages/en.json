@@ -11,16 +11,18 @@
     "tagline": "Deroua Association for Culture and Arts",
     "subtitle": "Celebrating creativity and elevating culture in all its forms — theater, music, visual arts, and literature.",
     "cta_primary": "Explore Our Events",
-    "cta_secondary": "Learn About Us"
+    "cta_secondary": "Learn About Us",
+    "scroll": "Scroll"
   },
   "about": {
     "badge": "About Us",
     "title": "A Cultural Association with an Artist's Heart",
     "body": "Founded with a genuine passion for reviving cultural heritage and supporting local creativity, Deroua Association believes that art is not a luxury but a human necessity. We strive to create an open space that brings together artists, intellectuals, and audiences.",
     "cta": "Read More About Us",
-    "stat_events": "Events Organized",
-    "stat_years": "Years of Creativity",
-    "stat_artists": "Artists Engaged"
+    "stat_events": "Events a Year",
+    "stat_years": "Years of Giving",
+    "stat_artists": "Members & Creators",
+    "stat_disciplines": "Arts & Disciplines"
   },
   "events": {
     "badge": "Upcoming Events",

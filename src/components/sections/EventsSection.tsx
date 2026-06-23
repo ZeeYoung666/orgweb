@@ -18,27 +18,16 @@ export default function EventsSection() {
       dir={dir}
       style={{
         paddingBlock: 'var(--spacing-4xl)',
-        backgroundColor: 'var(--color-teal-dark)',
+        backgroundColor: 'var(--color-parchment-deep)',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Background lattice */}
+      {/* Subtle paper texture on parchment */}
       <div
         aria-hidden
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(45deg, rgba(184,127,30,0.04) 25%, transparent 25%),
-            linear-gradient(-45deg, rgba(184,127,30,0.04) 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, rgba(184,127,30,0.04) 75%),
-            linear-gradient(-45deg, transparent 75%, rgba(184,127,30,0.04) 75%)
-          `,
-          backgroundSize: '24px 24px',
-          backgroundPosition: '0 0, 0 12px, 12px -12px, -12px 0',
-          pointerEvents: 'none',
-        }}
+        className="bg-pattern-lines"
+        style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
       />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -74,7 +63,7 @@ export default function EventsSection() {
               fontFamily: isRTL ? 'var(--font-arabic-display)' : 'var(--font-latin-display)',
               fontSize: 'var(--fs-h2)',
               fontWeight: 700,
-              color: 'var(--color-parchment-light)',
+              color: 'var(--color-teal-dark)',
               lineHeight: isRTL ? 1.5 : 'var(--lh-heading)',
               letterSpacing: isRTL ? 0 : 'var(--ls-display)',
               margin: '0 0 var(--spacing-m)',
@@ -87,7 +76,7 @@ export default function EventsSection() {
             style={{
               fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
               fontSize: 'var(--fs-body)',
-              color: 'rgba(248,245,240,0.65)',
+              color: 'var(--color-text-tertiary)',
               lineHeight: isRTL ? 'var(--lh-body-arabic)' : 'var(--lh-body)',
               maxWidth: 560,
               margin: '0 auto',

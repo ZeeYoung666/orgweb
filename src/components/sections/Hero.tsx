@@ -4,27 +4,41 @@ import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 32 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.75, delay, ease: [0.25, 0.46, 0.45, 0.94] },
-})
+const heroStyles = `
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes scrollPulse {
+    0% { opacity: .3; transform: translateY(0); }
+    50% { opacity: 1; }
+    100% { opacity: .3; transform: translateY(7px); }
+  }
+  .hero-logo-float {
+    animation: floatSlow 6.5s ease-in-out infinite 1s;
+    filter: drop-shadow(0 14px 40px rgba(0,0,0,.55));
+  }
+  .hero-scroll-arrow { animation: scrollPulse 1.9s ease-in-out infinite; }
+`
 
-const fadeIn = (delay = 0) => ({
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 0.9, delay },
-})
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } }
+const fadeUp = {
+  hidden: { opacity: 0, y: 34 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] } },
+}
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.9 } },
+}
 
 export default function Hero() {
   const t = useTranslations('hero')
   const locale = useLocale()
   const isRTL = locale === 'ar'
-  const dir = isRTL ? 'rtl' : 'ltr'
 
   return (
     <section
-      dir={dir}
+      dir={isRTL ? 'rtl' : 'ltr'}
       style={{
         position: 'relative',
         minHeight: '100vh',
@@ -32,193 +46,158 @@ export default function Hero() {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        backgroundColor: 'var(--color-teal-900)',
+        paddingBlock: '130px 70px',
+        paddingInline: 'clamp(20px, 5vw, 48px)',
+        background: 'linear-gradient(165deg, var(--color-teal-900) 0%, var(--color-teal-800) 52%, var(--color-teal-700) 100%)',
+        color: 'var(--color-text-inverse)',
+        textAlign: 'center',
       }}
     >
-      {/* Background layered atmosphere */}
+      <style>{heroStyles}</style>
+
+      {/* Diamond lattice overlay */}
+      <div
+        aria-hidden
+        className="bg-pattern-lattice"
+        style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+      />
+
+      {/* Radial gold glow */}
       <div
         aria-hidden
         style={{
           position: 'absolute',
-          inset: 0,
-          background: `
-            radial-gradient(ellipse 80% 60% at 30% 40%, rgba(18, 68, 85, 0.6) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 40% at 70% 60%, rgba(184,127,30,0.07) 0%, transparent 50%),
-            linear-gradient(180deg, var(--color-teal-900) 0%, var(--color-teal-800) 60%, var(--color-teal-900) 100%)
-          `,
+          top: '46%',
+          left: '50%',
+          width: 'min(840px, 92vw)',
+          height: 'min(840px, 92vw)',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, rgba(184,127,30,.18) 0%, rgba(184,127,30,.05) 38%, transparent 68%)',
+          pointerEvents: 'none',
         }}
       />
 
-      {/* Diamond lattice pattern overlay */}
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(45deg, rgba(184,127,30,0.04) 25%, transparent 25%),
-            linear-gradient(-45deg, rgba(184,127,30,0.04) 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, rgba(184,127,30,0.04) 75%),
-            linear-gradient(-45deg, transparent 75%, rgba(184,127,30,0.04) 75%)
-          `,
-          backgroundSize: '32px 32px',
-          backgroundPosition: '0 0, 0 16px, 16px -16px, -16px 0',
-        }}
-      />
-
-      {/* Decorative large Arabic letter (watermark) */}
+      {/* Content */}
       <motion.div
-        aria-hidden
-        {...fadeIn(0.2)}
-        style={{
-          position: 'absolute',
-          insetInlineEnd: isRTL ? 'auto' : '-2%',
-          insetInlineStart: isRTL ? '-2%' : 'auto',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          fontFamily: 'var(--font-arabic-display)',
-          fontSize: 'clamp(200px, 30vw, 420px)',
-          color: 'rgba(184,127,30,0.04)',
-          lineHeight: 1,
-          userSelect: 'none',
-          pointerEvents: 'none',
-          direction: 'rtl',
-        }}
-      >
-        ف
-      </motion.div>
-
-      {/* Decorative ornamental circles */}
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: '15%',
-          insetInlineStart: '8%',
-          width: 280,
-          height: 280,
-          borderRadius: '50%',
-          border: '1px solid rgba(184,127,30,0.1)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          bottom: '10%',
-          insetInlineEnd: '5%',
-          width: 180,
-          height: 180,
-          borderRadius: '50%',
-          border: '1px solid rgba(184,127,30,0.08)',
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Main content */}
-      <div
-        className="container"
+        initial="hidden"
+        animate="show"
+        variants={stagger}
         style={{
           position: 'relative',
-          zIndex: 2,
-          textAlign: 'center',
-          paddingBlock: '140px 100px',
+          maxWidth: 920,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        {/* Pre-title badge */}
-        <motion.div {...fadeUp(0.1)} style={{ marginBottom: 'var(--spacing-l)' }}>
+        {/* Floating logo */}
+        <motion.div variants={fadeUp}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo.jpeg"
+            alt="Deroua"
+            className="hero-logo-float"
+            style={{
+              width: 'clamp(100px, 13vw, 148px)',
+              height: 'auto',
+              display: 'block',
+              marginBottom: 'var(--spacing-l)',
+            }}
+          />
+        </motion.div>
+
+        {/* Eyebrow with flanking lines */}
+        <motion.span
+          variants={fadeUp}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 12,
+            color: 'var(--color-gold-300)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: 13,
+            letterSpacing: '0.16em',
+            marginBottom: 'var(--spacing-m)',
+          }}
+        >
           <span
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              backgroundColor: 'rgba(184,127,30,0.12)',
-              border: '1px solid rgba(184,127,30,0.35)',
-              borderRadius: '2px',
-              padding: '6px 16px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--fs-xs)',
-              color: 'var(--color-gold-warm)',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
+              width: 28,
+              height: 1,
+              background: 'var(--color-gold)',
+              display: 'inline-block',
+              flexShrink: 0,
             }}
-          >
-            <span style={{ color: 'var(--color-gold)', fontSize: '8px' }}>✦</span>
-            {isRTL ? 'جمعية الدروة للثقافة والفن' : 'Deroua Association for Culture and Arts'}
-            <span style={{ color: 'var(--color-gold)', fontSize: '8px' }}>✦</span>
-          </span>
-        </motion.div>
-
-        {/* Main slogan — Arabic always displayed prominently */}
-        <motion.div {...fadeUp(0.2)}>
-          <h1
-            dir="rtl"
+          />
+          {t('tagline')}
+          <span
             style={{
-              fontFamily: 'var(--font-arabic-display)',
-              fontSize: 'clamp(56px, 9vw, 120px)',
-              fontWeight: 700,
-              color: 'transparent',
-              background: 'linear-gradient(135deg, var(--color-gold-warm) 0%, var(--color-gold) 45%, var(--color-gold-dark) 100%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              lineHeight: 1.15,
-              letterSpacing: 0,
-              margin: '0 0 var(--spacing-s)',
-              textAlign: 'center',
+              width: 28,
+              height: 1,
+              background: 'var(--color-gold)',
+              display: 'inline-block',
+              flexShrink: 0,
             }}
-          >
-            من أجل الفن
-          </h1>
-        </motion.div>
+          />
+        </motion.span>
 
-        {/* Latin subtitle of slogan (only when not Arabic locale) */}
-        {!isRTL && (
-          <motion.div {...fadeUp(0.3)}>
-            <p
-              style={{
-                fontFamily: 'var(--font-latin-display)',
-                fontSize: 'clamp(18px, 2.5vw, 28px)',
-                fontWeight: 300,
-                fontStyle: 'italic',
-                color: 'rgba(248,245,240,0.45)',
-                marginBottom: 'var(--spacing-m)',
-                letterSpacing: '0.04em',
-              }}
-            >
-              {t('slogan')}
-            </p>
-          </motion.div>
-        )}
+        {/* Main Arabic slogan — always RTL, gradient gold */}
+        <motion.h1
+          variants={fadeUp}
+          dir="rtl"
+          className="text-gradient-gold"
+          style={{
+            fontFamily: 'var(--font-arabic-display)',
+            fontSize: 'clamp(64px, 11vw, 150px)',
+            fontWeight: 700,
+            lineHeight: 1,
+            letterSpacing: 0,
+            marginBlock: '14px 0',
+          }}
+        >
+          من أجل الفن
+        </motion.h1>
 
-        {/* Gold ornamental divider */}
+        {/* Gold diamond divider */}
         <motion.div
-          {...fadeIn(0.4)}
+          variants={fadeIn}
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--spacing-m)',
-            marginBlock: 'var(--spacing-l)',
+            gap: 16,
+            color: 'var(--color-gold)',
+            marginBlockStart: 24,
           }}
         >
-          <div style={{ width: 60, height: 1, background: 'linear-gradient(to right, transparent, var(--color-gold))' }} />
-          <span style={{ color: 'var(--color-gold)', fontSize: '10px' }}>❖</span>
-          <div style={{ width: 60, height: 1, background: 'linear-gradient(to left, transparent, var(--color-gold))' }} />
+          <span
+            style={{
+              width: 56,
+              height: 1,
+              background: 'linear-gradient(to right, transparent, var(--color-gold))',
+              display: 'inline-block',
+            }}
+          />
+          <span>❖</span>
+          <span
+            style={{
+              width: 56,
+              height: 1,
+              background: 'linear-gradient(to left, transparent, var(--color-gold))',
+              display: 'inline-block',
+            }}
+          />
         </motion.div>
 
-        {/* Description */}
+        {/* Lead paragraph */}
         <motion.p
-          {...fadeUp(0.45)}
+          variants={fadeUp}
           style={{
+            maxWidth: 640,
+            marginBlockStart: 24,
+            fontSize: 'clamp(17px, 2vw, 21px)',
+            lineHeight: isRTL ? 'var(--lh-body-arabic)' : 1.8,
+            color: 'rgba(248,245,240,.84)',
             fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
-            fontSize: isRTL ? '19px' : 'var(--fs-body-lg)',
-            color: 'rgba(248,245,240,0.72)',
-            lineHeight: isRTL ? 'var(--lh-body-arabic)' : 'var(--lh-body)',
-            maxWidth: 620,
-            margin: '0 auto var(--spacing-2xl)',
-            textAlign: 'center',
           }}
         >
           {t('subtitle')}
@@ -226,12 +205,13 @@ export default function Hero() {
 
         {/* CTAs */}
         <motion.div
-          {...fadeUp(0.55)}
+          variants={fadeUp}
           style={{
             display: 'flex',
-            gap: 'var(--spacing-m)',
-            justifyContent: 'center',
+            gap: 16,
             flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginBlockStart: 38,
           }}
         >
           <Link
@@ -239,64 +219,64 @@ export default function Hero() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
-              padding: '13px 28px',
-              backgroundColor: 'var(--color-gold)',
-              color: 'var(--color-charcoal)',
+              justifyContent: 'center',
+              minHeight: 52,
+              padding: '0 30px',
+              borderRadius: 4,
+              background: 'var(--color-gold)',
+              color: 'var(--color-teal-900)',
               fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
-              fontSize: '16px',
               fontWeight: 700,
+              fontSize: 18,
               textDecoration: 'none',
-              borderRadius: '3px',
-              border: '2px solid var(--color-gold)',
-              boxShadow: '0 4px 20px rgba(184,127,30,0.35)',
-              transition: 'all 250ms ease-out',
-              letterSpacing: isRTL ? 0 : '0.01em',
+              boxShadow: '0 6px 20px rgba(0,0,0,.28)',
+              transition: 'all .25s cubic-bezier(.25,.46,.45,.94)',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.backgroundColor = 'var(--color-gold-warm)'
-              el.style.boxShadow = '0 6px 28px rgba(184,127,30,0.5)'
+              el.style.background = 'var(--color-gold-warm)'
               el.style.transform = 'translateY(-2px)'
+              el.style.boxShadow = '0 12px 30px rgba(0,0,0,.34)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.backgroundColor = 'var(--color-gold)'
-              el.style.boxShadow = '0 4px 20px rgba(184,127,30,0.35)'
+              el.style.background = 'var(--color-gold)'
               el.style.transform = 'translateY(0)'
+              el.style.boxShadow = '0 6px 20px rgba(0,0,0,.28)'
             }}
           >
             {t('cta_primary')}
           </Link>
 
           <Link
-            href={`/${locale}/about`}
+            href={`/${locale}/contact`}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
-              padding: '13px 28px',
-              backgroundColor: 'transparent',
+              justifyContent: 'center',
+              minHeight: 52,
+              padding: '0 30px',
+              borderRadius: 4,
+              background: 'transparent',
+              border: '1.5px solid var(--color-gold)',
               color: 'var(--color-parchment)',
               fontFamily: isRTL ? 'var(--font-arabic-body)' : 'var(--font-latin-body)',
-              fontSize: '16px',
               fontWeight: 600,
+              fontSize: 18,
               textDecoration: 'none',
-              borderRadius: '3px',
-              border: '1.5px solid rgba(237,208,152,0.4)',
-              transition: 'all 250ms ease-out',
+              transition: 'all .25s',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'var(--color-gold)'
-              el.style.color = 'var(--color-gold-warm)'
-              el.style.backgroundColor = 'rgba(184,127,30,0.08)'
+              el.style.background = 'rgba(184,127,30,.16)'
+              el.style.borderColor = 'var(--color-gold-warm)'
+              el.style.color = 'var(--color-gold-100)'
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(237,208,152,0.4)'
+              el.style.background = 'transparent'
+              el.style.borderColor = 'var(--color-gold)'
               el.style.color = 'var(--color-parchment)'
-              el.style.backgroundColor = 'transparent'
             }}
           >
             {t('cta_secondary')}
@@ -305,31 +285,29 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          {...fadeIn(1.0)}
+          variants={fadeUp}
           style={{
-            position: 'absolute',
-            bottom: '40px',
-            left: '50%',
-            transform: 'translateX(-50%)',
+            marginBlockStart: 56,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '8px',
-            color: 'rgba(237,208,152,0.4)',
-            fontSize: '11px',
-            fontFamily: 'var(--font-mono)',
-            letterSpacing: '0.08em',
+            gap: 9,
+            color: 'var(--color-gold-300)',
           }}
         >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-            style={{ fontSize: '20px', lineHeight: 1 }}
+          <span
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 11,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+            }}
           >
-            ↓
-          </motion.div>
+            {t('scroll')}
+          </span>
+          <span className="hero-scroll-arrow" style={{ fontSize: 16 }}>↓</span>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }
